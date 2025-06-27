@@ -45,14 +45,18 @@ class _FilesListWidgetState extends State<FilesListWidget> {
                 selected: selectedType == null,
                 onSelected: (_) => setState(() => selectedType = null),
               ),
-              ...fileTypes.map((type) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: ChoiceChip(
-                  label: Text(type.toUpperCase()),
-                  selected: selectedType == type,
-                  onSelected: (_) => setState(() => selectedType = type),
+              ...fileTypes.map(
+                (type) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: ChoiceChip(
+                    label: Text(type.toUpperCase()),
+                    selected: selectedType == type,
+                    onSelected: (selected) => setState(
+                      () => selectedType = selected ? type : null,
+                    ),
+                  ),
                 ),
-              )),
+              ),
             ],
           ),
         ),
